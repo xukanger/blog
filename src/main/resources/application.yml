@@ -1,4 +1,6 @@
 spring:
+  session:
+    store-type: redis
   datasource:
     url:  jdbc:mysql://localhost:3306/blog?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
     username: root
@@ -12,3 +14,14 @@ spring:
         dialect : org.hibernate.dialect.MySQL5Dialect
     database: mysql
     show-sql: true
+
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  tokenHead: "Bearer "
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+      register: "auth/register"
