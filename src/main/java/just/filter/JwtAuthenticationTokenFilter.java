@@ -1,9 +1,11 @@
 package just.filter;
 
+import just.util.CookieUtil;
 import just.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -40,14 +42,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain chain) throws ServletException, IOException {
-        String authHeader = request.getHeader(this.tokenHeader);
+        String authHeader = CookieUtil.getCookie(request,this.tokenHeader);
         if (authHeader != null && authHeader.startsWith(tokenHead)) {
             final String authToken = authHeader.substring(tokenHead.length()); // The part after "Bearer "
             String username = jwtTokenUtil.getUsernameFromToken(authToken);
-
             logger.info("checking authentication " + username);
-
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (username != null && (auth == null)) {
 
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 

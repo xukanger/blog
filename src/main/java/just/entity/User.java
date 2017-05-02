@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by yt on 2017/4/29.
@@ -27,6 +28,9 @@ public class User {
     private Date lastPasswordResetDate;
 
     private String role;
+
+
+    private List<Paragraph> paragraphs;
 
     public Long getId() {
         return id;

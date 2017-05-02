@@ -27,6 +27,10 @@ public class JwtTokenUtil implements Serializable {
     @Value("${jwt.expiration}")
     private Long expiration;
 
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
+
+
     public String getUsernameFromToken(String token) {
         String username;
         try {
@@ -93,8 +97,9 @@ public class JwtTokenUtil implements Serializable {
         return generateToken(claims);
     }
 
-    String generateToken(Map<String, Object> claims) {
-        return Jwts.builder()
+    //生成token
+    private String generateToken(Map<String, Object> claims) {
+        return tokenHead+Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
                 .signWith(SignatureAlgorithm.HS512, secret)
@@ -123,7 +128,6 @@ public class JwtTokenUtil implements Serializable {
         JwtUser user = (JwtUser) userDetails;
         final String username = getUsernameFromToken(token);
         final Date created = getCreatedDateFromToken(token);
-        //final Date expiration = getExpirationDateFromToken(token);
         return (
                 username.equals(user.getUsername())
                         && !isTokenExpired(token)
