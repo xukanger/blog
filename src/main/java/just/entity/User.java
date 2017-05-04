@@ -30,7 +30,7 @@ public class User {
     private String role;
 
 
-    private List<Paragraph> paragraphs;
+    private List<Article> paragraphs;
 
     public Long getId() {
         return id;

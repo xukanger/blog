@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
  * Created by yt on 2017/5/2.
  */
 @Entity
-public class Paragraph {
+public class Article {
 
     @Id
     @GeneratedValue
