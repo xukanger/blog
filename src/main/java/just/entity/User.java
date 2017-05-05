@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by yt on 2017/4/29.
@@ -30,7 +29,7 @@ public class User {
     private String role;
 
 
-    private List<Article> paragraphs;
+    //private List<Article> paragraphs;
 
     public Long getId() {
         return id;

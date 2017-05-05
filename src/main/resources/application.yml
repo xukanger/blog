@@ -1,14 +1,4 @@
 spring:
-  velocity:
-    charset: UTF-8
-    properties:
-      input:
-        encoding: UTF-8
-      output:
-        encoding: UTF-8
-    resourceLoaderPath: classpath:/static/template/
-    suffix: vm
-
   session:
     store-type: redis
   datasource:

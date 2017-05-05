@@ -1,9 +1,11 @@
 package just.entity;
 
+import just.VO.cons.Status;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import java.util.Date;
 
 /**
  * Created by yt on 2017/5/2.
@@ -13,15 +15,24 @@ public class Article {
 
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
 
-    String content;
+    private Integer thumbUpCount;
 
-    Integer seenCount;
+    //@OneToMany
+    //private User user;
 
-    Integer thumbUpCount;
+    private Status status;
 
-    @OneToMany
-    User user;
+    private String tilte;
+
+    private Date publishDate;//发表日期
+
+    private Integer number;//阅读数
+
+    private Integer coin;//打赏数
+
+    private String content;//博文内容
+
 
 }
