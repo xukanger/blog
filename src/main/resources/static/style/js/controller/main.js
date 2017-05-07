@@ -2,7 +2,7 @@
  * Created by tanghao on 2017/5/6.
  * 配置前端路由及其他全局配置
  */
-var myApp = angular.module('myApp',['ngRoute','ui.bootstrap'])
+var myApp = angular.module('myApp',['ngRoute'])
 myApp.config(['$routeProvider',function($routeProvider){
         $routeProvider.when('/',{
             templateUrl:'home.html',
@@ -18,12 +18,12 @@ myApp.config(['$routeProvider',function($routeProvider){
             })
             .otherwise({redirectTo:'/'});
     }]);
-myApp.controller('homeController', ['$scope', '$modal', '$filter', 'tips', '$routeParams', '$route',function ($scope, $modal, $filter, tips, $routeParams,$route) {
+myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route',function ($scope, $filter, $routeParams,$route) {
 
 }]);
-myApp.controller('userhomeController', ['$scope', '$modal', '$filter', 'tips', '$routeParams','$route', function ($scope, $modal, $filter, tips, $routeParams,$route) {
+myApp.controller('userhomeController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
 
 }]);
-myApp.controller('messageController', ['$scope', '$modal', '$filter', 'tips', '$routeParams','$route', function ($scope, $modal, $filter, tips, $routeParams,$route) {
+myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
 
 }]);
