@@ -1,5 +1,6 @@
 package just.web;
 
+import just.VO.JSONResult;
 import just.VO.jwt.JwtAuthenticationRequest;
 import just.VO.jwt.JwtAuthenticationResponse;
 import just.entity.User;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +26,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    //
+    //获取token登录
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
             @RequestBody JwtAuthenticationRequest authenticationRequest,
@@ -40,6 +38,7 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
+    //刷新token
     @RequestMapping(value = "refresh", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(
             HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -53,12 +52,31 @@ public class AuthController {
         }
     }
 
+    //注册
     @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
     public User register(@RequestBody User addedUser) throws AuthenticationException {
         return authService.register(addedUser);
     }
 
+    @RequestMapping(value = "/examine/duplicate/username/{username}", method = RequestMethod.POST)
+    public String checkUsernameDuplicate(@PathVariable String username){
+        if(authService.isUsernameDuplicate(username))
+            return JSONResult.fillResultString(null,"用户名重复",false);
+        else
+            return JSONResult.fillResultString(null,"成功",true);
+    }
+
+    @RequestMapping(value = "/examine/sensitive/username/{username}", method = RequestMethod.POST)
+    public String checkUsernameSensitive(@PathVariable String username){
+        if(authService.isDataSensitive(username))
+            return JSONResult.fillResultString(null,"有敏感词",false);
+        else
+            return JSONResult.fillResultString(null,"成功",true);
+    }
+
     private void addAuthCookie(HttpServletResponse response,String token){
         CookieUtil.addCookie(response,tokenHeader,token,Math.toIntExact(expiration));
     }
+
+
 }

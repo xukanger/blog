@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import just.entity.User;
 import just.service.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +15,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/users")
-@PreAuthorize("hasRole('ADMIN')")
+//@PreAuthorize("hasRole('ADMIN')")
 public class UserController {
+
     @Autowired
     private UserRepository repository;
 
@@ -26,5 +26,5 @@ public class UserController {
         return Lists.newArrayList(repository.findAll());
     }
 
-    // 略去其它部分
+
 }
