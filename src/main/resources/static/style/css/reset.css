@@ -1,0 +1,66 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+input {
+	margin: 0;
+	font: inherit;
+	line-height: normal !important;
+}
+a,
+a:hover {
+	text-decoration: none;
+}
+div,input,p,li,ul,ol{
+	box-sizing: border-box;
+}
+
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.rel {
+	position: relative;
+}
+.abs {
+	position: absolute;
+}
+.clearfix:after {
+	content: '\20';
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+.w-1200 {
+	width: 1200px;
+	margin: 0 auto;
+}
+.text-center {
+	text-align: center;
+}
+button, input {
+	font-family: "\5FAE\8F6F\96C5\9ED1", tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+}
+html, body {
+	font-family: "\5FAE\8F6F\96C5\9ED1", tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+}
+.inline {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+.color-white {
+	color: #fff
+}
+.mask{
+	background: url(/style/image/site/min/qunfa/mask.png) repeat repeat;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
