@@ -135,9 +135,9 @@ public class AuthController {
         if(correctCode==null)
             return JSONResult.fillResultString(null,"验证码失效",false);
         else if(correctCode.equals(code))
-            return JSONResult.fillResultString(null,"成功",true);
+            return JSONResult.fillResultString(null,"验证码正确",true);
         else
-            return JSONResult.fillResultString(null,"失败",false);
+            return JSONResult.fillResultString(null,"验证码错误",false);
     }
 
     private void addAuthCookie(HttpServletResponse response,String token){

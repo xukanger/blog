@@ -36,7 +36,6 @@ $(function(){
             }else {
                 if(url !=''){
                     $.post(url+val,function (post) {
-                        post = JSON.parse(post);
                         if(post.result){
                             //post 通过
                             if(pass.length>0){
@@ -45,7 +44,7 @@ $(function(){
                                 error.remove();
                                 parent.append(passHtml)
                             }
-                            console.log('post:'+url+';val+'+val)
+                            console.log('post:'+ url +' val+'+val);
 
                         }else{
                             error.remove();
@@ -93,7 +92,7 @@ $(function(){
         })
     }
     $("#code-image").on('click',function (e) {
-
+        alert("123")
     });
     function getImage() {
         $.post("/captcha-image",function (reslut) {
