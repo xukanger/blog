@@ -94,6 +94,7 @@ html,body{
 .login-from #invit{
     width: 50%;
     margin-right: 5%;
+    display: inline;
 }
 .fromSub{
     display: block;
@@ -109,11 +110,19 @@ html,body{
     color: white;
     cursor: pointer;
 }
-.login-errer{
+.login-error{
     font-size:12px;
     color: #ff5151;
 }
 .login-pass{
     font-size:12px;
     color: #3b9bf8;
+}
+.inCode{
+    width: 40%;
+    height: 37.6px;
+    display:inline-flex;
+}
+.inCode img{
+    margin-top: 10px;
 }
