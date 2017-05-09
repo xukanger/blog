@@ -5,8 +5,11 @@
     <title>注册</title>
     <link rel="stylesheet" href="/style/css/reset.css" type="text/css">
     <link rel="stylesheet" href="/style/css/login.css" type="text/css">
+    <link rel="stylesheet" href="/style/css/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css">
     <script src="/style/js/lib/jquery/jquery-1.11.0.min.js"></script>
+    <script src="/style/css/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <script src="/style/js/controller/register.js"></script>
+
 </head>
 <body>
     <div class="login-body">
@@ -45,12 +48,12 @@
                     <label for="invit">验证码</label>
                         <input type="text" id="invit">
 
-                        <div class="inCode" id="code-img">
-                            <img  src="/captcha-image">
+                        <div class="inCode">
+                                <img onclick="this.src='/captcha-image'" id="code-img" src="/captcha-image">
                         </div>
                 </div>
             </from>
-            <a href="javascript:;" class="fromSub">注册</a>
+            <a href="javascript:;" class="fromSub" id= "regbtn" >注册</a>
         </div>
     </div>
 <script>

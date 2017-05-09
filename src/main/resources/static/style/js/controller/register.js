@@ -6,15 +6,22 @@ $(function(){
         return "<span class='login-error'>"+message+"</span>";
     };
     var passHtml = "<span class='login-pass'>验证通过</span>";
-
+    var userVO ={
+        "username":"",
+        "password":"",
+        "nickname":"",
+        "mailbox":"",
+        "portrait":"",
+        "code":""
+    }
     //验证
     var ajaxBlur =[
-        {id:'#username',url:'/examine/duplicate/username/'},
-        {id:'#nickname',url:'/examine/sensitive/username/'},
-        {id:'#password',url:''},
-        {id:'#passwordOK',url:''},
-        {id:'#email',url:''},
-        {id:'#invit',url:'/verify/'}
+        {id:'#username',url:'/examine/duplicate/username/',pass:false},
+        {id:'#nickname',url:'/examine/sensitive/username/',pass:false},
+        {id:'#password',url:'',pass:false},
+        {id:'#passwordOK',url:'',pass:false},
+        {id:'#email',url:'',pass:false},
+        {id:'#invit',url:'/verify/',pass:false}
     ];
     ajaxBlur.forEach(function(e,i,a){
         ajaxProp(e.id,e.url)
@@ -42,7 +49,20 @@ $(function(){
                                 return
                             }else {
                                 error.remove();
-                                parent.append(passHtml)
+                                parent.append(passHtml);
+                                if(id=='#username')
+                                {
+                                    ajaxBlur[0].pass = true;
+                                }
+                                if(id=='#nickname')
+                                {
+                                    ajaxBlur[1].pass = true;
+                                }
+                                if(id=='#invit')
+                                {
+                                    ajaxBlur[5].pass = true;
+                                }
+
                             }
                             console.log('post:'+ url +' val+'+val);
 
@@ -50,6 +70,18 @@ $(function(){
                             error.remove();
                             pass.remove();
                             parent.append(errorHtml(post.message));
+                            if(id=='#username')
+                            {
+                                ajaxBlur[0].pass = false;
+                            }
+                            if(id=='#nickname')
+                            {
+                                ajaxBlur[1].pass = false;
+                            }
+                            if(id=='#invit')
+                            {
+                                ajaxBlur[5].pass = false;
+                            }
                         }
                     });
 
@@ -59,10 +91,12 @@ $(function(){
                         error.remove();
                         pass.remove();
                         parent.append(errorHtml("密码要在6-12位之间！"));
+                        ajaxBlur[2].pass = false;
                     }else {
                         error.remove();
                         pass.remove();
                         parent.append(passHtml);
+                        ajaxBlur[2].pass = true;
                     }
                 }
                 if(id == '#passwordOK' && $('#password').val().trim() !=''){
@@ -70,10 +104,12 @@ $(function(){
                         error.remove();
                         pass.remove();
                         parent.append(errorHtml("两次密码不一致！"));
+                        ajaxBlur[3].pass = false;
                     }else {
                         error.remove();
                         pass.remove();
                         parent.append(passHtml);
+                        ajaxBlur[3].pass = true;
                     }
                 }
                 if(id == '#email'){
@@ -81,24 +117,33 @@ $(function(){
                     if(re.test($('#email').val().trim())){
                         error.remove();
                         pass.remove();
-                        parent.append(passHtml)
+                        parent.append(passHtml);
+                        ajaxBlur[4].pass = true;
                     }else {
                         error.remove();
                         pass.remove();
                         parent.append(errorHtml("请输入正确的邮箱格式！"));
+                        ajaxBlur[4].pass = false;
                     }
                 }
             }
         })
     }
-    $("#code-image").on('click',function (e) {
-        alert("123")
-    });
-    function getImage() {
-        $.post("/captcha-image",function (reslut) {
 
+    function doregister(){
+        ajaxBlur.forEach(function(e,i,a){
+           if(!e.pass){
+               $("#regbtn").popover("123");
+               return;
+           }
         });
+        userVO.username =  $("#username").val();
+        userVO.nickname =  $("#nickname").val();
+        userVO.password = $("#password").val();
+        userVO.mailbox = $("#email").val();
+        userVO.code = $("#invit").val();
     }
+    $("#regbtn").onclick(doregister());
 });
 
 
