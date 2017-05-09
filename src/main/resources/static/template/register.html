@@ -62,7 +62,7 @@
             img = new Image();
         if(window.URL){
             //File API
-            alert(files[0].name + "," + files[0].size + " bytes");
+//            alert(files[0].name + "," + files[0].size + " bytes");
             img.src = window.URL.createObjectURL(files[0]); //创建一个object URL，并不是你的本地路径
             img.width = 200;
             img.onload = function(e) {
