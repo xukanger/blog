@@ -20,16 +20,47 @@ public class User {
     private String username;
 
     @Column(nullable = false)
+    private String nickname;
+
+    private String portrait;
+
+    @Column(nullable = false)
     private String password;
 
-    private String email;
+    private String mailbox;
 
     private Date lastPasswordResetDate;
 
     private String role;
+//
+//    @OneToMany(cascade={ CascadeType.ALL })
+//    @JoinColumn(name="")
+//    private List<Article> paragraphs;
 
 
-    //private List<Article> paragraphs;
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
+    }
+
+    public String getMailbox() {
+        return mailbox;
+    }
+
+    public void setMailbox(String mailbox) {
+        this.mailbox = mailbox;
+    }
 
     public Long getId() {
         return id;
@@ -53,14 +84,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Date getLastPasswordResetDate() {

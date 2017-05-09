@@ -1,17 +1,24 @@
 package just.VO;
 
-import org.json.JSONObject;
-
 /**
  * Created by yt on 2017/4/30.
  */
 public class JSONResult {
-    public static String fillResultString(Integer status, String message, Object result){
-        JSONObject jsonObject = new JSONObject(){{
-            put("status", status);
-            put("message", message);
-            put("result", result);
-        }};
-        return jsonObject.toString();
+
+    private Integer status;
+
+    private String message;
+
+    private Object result;
+
+    public JSONResult(Integer status, String message, Object result) {
+        this.status = status;
+        this.message = message;
+        this.result = result;
+    }
+
+    public static JSONResult fillResultString(Integer status, String message, Object result){
+
+        return new JSONResult(status,message,result);
     }
 }

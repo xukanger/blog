@@ -33,14 +33,18 @@ public class AuthController {
     @Value("${jwt.expiration}")
     private Long expiration;
 
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
+
+    private final Producer captchaProducer;
+
+    private final RedisTemplate<String,String> redisTemplate;
 
     @Autowired
-    private Producer captchaProducer;
-
-    @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    public AuthController(AuthService authService, Producer captchaProducer, RedisTemplate<String, String> redisTemplate) {
+        this.authService = authService;
+        this.captchaProducer = captchaProducer;
+        this.redisTemplate = redisTemplate;
+    }
 
 
     //获取token登录
@@ -76,7 +80,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/examine/duplicate/username/{username}", method = RequestMethod.POST)
-    public String checkUsernameDuplicate(@PathVariable String username){
+    public JSONResult checkUsernameDuplicate(@PathVariable String username){
         if(authService.isUsernameDuplicate(username))
             return JSONResult.fillResultString(null,"用户名重复",false);
         else
@@ -84,7 +88,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/examine/sensitive/username/{username}", method = RequestMethod.POST)
-    public String checkUsernameSensitive(@PathVariable String username){
+    public JSONResult checkUsernameSensitive(@PathVariable String username){
         if(authService.isDataSensitive(username))
             return JSONResult.fillResultString(null,"有敏感词",false);
         else
@@ -122,8 +126,8 @@ public class AuthController {
         return null;
     }
 
-    @RequestMapping(value = "/verifyCode" , method = RequestMethod.POST)
-    public String verifyCode(@RequestParam String code,
+    @RequestMapping(value = "/verify/{code}" , method = RequestMethod.POST)
+    public JSONResult verifyCode(@PathVariable String code,
                              @CookieValue("captchaCode") String captchaCode){
         String correctCode = redisTemplate.opsForValue().get(captchaCode);
         if(correctCode==null)

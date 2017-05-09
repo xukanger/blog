@@ -5,12 +5,20 @@ package just.VO.bloguser;
  * 用户类，用于注册
  */
 public class NewUserVO {
-    private Long id;
     private String username;
     private String password;
     private String nickname;//昵称
     private String mailbox;//邮箱
     private String portrait;//头像地址
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getPortrait() {
         return portrait;
@@ -18,14 +26,6 @@ public class NewUserVO {
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
