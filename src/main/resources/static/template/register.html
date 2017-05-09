@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/style/css/reset.css" type="text/css">
     <link rel="stylesheet" href="/style/css/login.css" type="text/css">
     <script src="/style/js/lib/jquery/jquery-1.11.0.min.js"></script>
-    <script src="/style/js/controller/login.js"></script>
+    <script src="/style/js/controller/register.js"></script>
 </head>
 <body>
     <div class="login-body">
@@ -26,8 +26,8 @@
                     <input type="text" id="username">
                 </div>
                 <div class="form-group">
-                    <label for="name">昵称</label>
-                    <input type="text" id="name" data-blur="true">
+                    <label for="nickname">昵称</label>
+                    <input type="text" id="nickname" data-blur="true">
                 </div>
                 <div class="form-group">
                     <label for="password">密码</label>
@@ -44,8 +44,9 @@
                 <div class="form-group">
                     <label for="invit">验证码</label>
                         <input type="text" id="invit">
-                        <div class="inCode">
 
+                        <div class="inCode" id="code-img">
+                            <img  src="/captcha-image">
                         </div>
                 </div>
             </from>
@@ -68,7 +69,7 @@
                 window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
             }
             // fileList.(img);
-            $('#userShow').html('')
+            $('#userShow').html('');
             fileList.appendChild(img);
             console.log(img)
         }

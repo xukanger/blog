@@ -81,6 +81,8 @@ public class AuthController {
 
     @RequestMapping(value = "/examine/duplicate/username/{username}", method = RequestMethod.POST)
     public JSONResult checkUsernameDuplicate(@PathVariable String username){
+        if(authService.isDataSensitive(username))
+            return JSONResult.fillResultString(null,"有敏感词",false);
         if(authService.isUsernameDuplicate(username))
             return JSONResult.fillResultString(null,"用户名重复",false);
         else
