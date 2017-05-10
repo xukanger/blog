@@ -1,2 +1,226 @@
 /*通用*/
-/*frome 基础*/
+.navbar-inverse .navbar-nav > li > a{
+    color: white;
+}
+.navbar{
+    border-radius: 0;
+}
+body{
+    overflow-x: hidden;
+}
+ul{
+    list-style-type:none;
+}
+.img img{
+    width: 100%;
+    display: block;
+}
+.bgSlideShow, .bgSlideShow:after {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: -2;
+}
+.bgSlideShow:after{
+    content: '';
+}
+.bgSlideShow li span{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: transparent;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: none;
+    opacity: 0;
+    z-index: -2;
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: imageAnimation 36s linear infinite 0s;
+    -moz-animation: imageAnimation 36s linear infinite 0s;
+    -o-animation: imageAnimation 36s linear infinite 0s;
+    -ms-animation: imageAnimation 36s linear infinite 0s;
+    animation: imageAnimation 36s linear infinite 0s;
+}
+.bgSlideShow li:nth-child(1) span{
+    background-image:url("/style/img/blogImg/bg1.jpg");
+}
+.bgSlideShow li:nth-child(2) span{
+    background-image:url("/style/img/blogImg/ruiweng.jpg");
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    -ms-animation-delay: 6s;
+    animation-delay: 6s;
+}
+.bgSlideShow li:nth-child(3) span{
+    background-image:url("/style/img/blogImg/kapai.jpg");
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s;
+}
+.bgSlideShow li:nth-child(4) span{
+    background-image:url("/style/img/blogImg/kapai2.jpg");
+    -webkit-animation-delay: 18s;
+    -moz-animation-delay: 18s;
+    -o-animation-delay: 18s;
+    -ms-animation-delay: 18s;
+    animation-delay: 18s;
+}
+.bgSlideShow li:nth-child(5) span{
+    background-image:url("/style/img/blogImg/wuqi.jpg");
+    -webkit-animation-delay: 24s;
+    -moz-animation-delay: 24s;
+    -o-animation-delay: 24s;
+    -ms-animation-delay: 24s;
+    animation-delay: 24s;
+}
+.bgSlideShow li:nth-child(6) span{
+    background-image:url("/style/img/blogImg/vn.jpg");
+    -webkit-animation-delay: 36s;
+    -moz-animation-delay: 36s;
+    -o-animation-delay: 36s;
+    -ms-animation-delay: 36s;
+    animation-delay: 36s;
+}
+.mgt-50{
+    margin-top: 50px;
+}
+/*articleModel 文章模块*/
+.garden{
+    border-radius: 100%;
+    overflow: hidden;
+}
+.article{
+    position: relative;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+.articleModel{
+    padding: 15px;
+}
+.dataTime{
+    background-color: rgb(107,105,214);
+    border-color: rgb(107,105,214);
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    left: -20px;
+    top: -20px;
+    color: white;
+    padding-top: 10px;
+}
+.dataTime div.month{
+    margin:0;
+}
+.dataTime div.day{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: -5px;
+}
+.articleTitle{
+    font-size: 32px;
+}
+.articleTitle h2{
+    display: inline-block;
+    background-color: #0f88eb;
+    color: #000;
+}
+.articleTag{
+    line-height: 24px;
+    margin: 20px;
+}
+.articleTag .label{
+    margin-right: 5px;
+    font-size: 90%;
+    background-color: rgba(10,10,10,0.7);
+}
+.boxShadow{
+    -moz-box-shadow: 0px 0px 8px black;
+    -webkit-box-shadow: 0px 0px 8px black;
+    background-color: rgba(230,238,232,0.5);
+    box-shadow: 0px 0px 8px black;
+}
+.articleImg{
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    overflow: auto;
+}
+.articleImg img{
+    -webkit-transition: all .35s ease-in-out;
+    -moz-transition: all .35s ease-in-out;
+    transition: all .35s ease-in-out;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+}
+.articleImg .info{
+    background: #333;
+    background: rgba(0,0,0,0.6);
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all .35s ease-in-out;
+    -moz-transition: all .35s ease-in-out;
+    transition: all .35s ease-in-out;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.articleImg .info p{
+    font-style: italic;
+    font-size: 25px;
+    position: relative;
+    color: #bbb;
+    padding: 20px 20px 20px;
+    text-align: center;
+    -webkit-transform: scale(5);
+    -moz-transform: scale(5);
+    -ms-transform: scale(5);
+    -o-transform: scale(5);
+    transform: scale(5);
+    -webkit-transition: all .35s .3s linear;
+    -moz-transition: all .35s .3s linear;
+    transition: all .35s .3s linear;
+}
+/*动画代码区*/
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+
+    8% {
+        opacity: 1;
+        transform: scale(1.05);
+        animation-timing-function: ease-out;
+    }
+
+    17% {
+        opacity: 1;
+        transform: scale(1.1) rotate(0deg);
+    }
+
+    25% {
+        opacity: 0;
+        transform: scale(1.1) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0
+    }
+}
