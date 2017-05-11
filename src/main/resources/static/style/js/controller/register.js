@@ -87,7 +87,7 @@ $(function(){
 
                 }
                 if(id == '#password'){
-                    if( val.trim().length >= 6 && val.trim().length <=12){
+                    if( val.trim().length <= 6 && val.trim().length >=12){
                         error.remove();
                         pass.remove();
                         parent.append(errorHtml("密码要在6-12位之间！"));
@@ -131,9 +131,22 @@ $(function(){
     }
 
     function doregister(){
+        var reg = $("#regbtn");
         ajaxBlur.forEach(function(e,i,a){
            if(!e.pass){
-               $("#regbtn").popover("123");
+               var reg = $("#regbtn");
+
+               reg.popover({placement:'top', delay: {show: 100}, html: true,
+                   content: function () {
+                       return "注册信息有误";
+                   }});
+
+               setTimeout(function () {
+
+                   // reg.popover('destroy');
+
+               }, 3000);
+
                return;
            }
         });
@@ -142,8 +155,11 @@ $(function(){
         userVO.password = $("#password").val();
         userVO.mailbox = $("#email").val();
         userVO.code = $("#invit").val();
+        $.post("/auth/register",JSON.stringify(userVO),function (post){
+
+        });
     }
-    $("#regbtn").onclick(doregister());
+    $("#regbtn").on("click",doregister());
 });
 
 
