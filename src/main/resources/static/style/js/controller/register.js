@@ -155,9 +155,9 @@ $(function(){
         userVO.password = $("#password").val();
         userVO.mailbox = $("#email").val();
         userVO.code = $("#invit").val();
-        $.post("/auth/register",JSON.stringify(userVO),function (post){
-
-        });
+        // $.post("/auth/register",JSON.stringify(userVO),function (post){
+        //
+        // });
     }
     $("#regbtn").on("click",doregister());
 });
