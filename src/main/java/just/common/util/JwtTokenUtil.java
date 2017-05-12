@@ -1,4 +1,4 @@
-package just.util;
+package just.common.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

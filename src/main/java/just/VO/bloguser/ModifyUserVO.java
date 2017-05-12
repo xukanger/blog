@@ -1,12 +1,23 @@
 package just.VO.bloguser;
 
+import just.common.vo.BaseVO;
+import just.entity.User;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by llf on 2017/5/2.
  */
-public class ModifyUserVO {
+public class ModifyUserVO extends BaseVO<ModifyUserVO,User>{
+    @NotNull
     private Long id;
+
     private String portrait;//头像地址
+
+
     private String password;
+
+
     private String nickname;//昵称
 
     public String getPortrait() {
@@ -39,5 +50,12 @@ public class ModifyUserVO {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    @Override
+    public User VO2Entity() {
+        User user = new User();
+        super.VO2Entity(user);
+        return user;
     }
 }

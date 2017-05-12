@@ -1,4 +1,4 @@
-package just.util;
+package just.common.util;
 
 import just.entity.SensitiveWord;
 import org.apache.log4j.Logger;

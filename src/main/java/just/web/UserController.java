@@ -1,6 +1,7 @@
 package just.web;
 
 import com.google.common.collect.Lists;
+import just.common.controller.BaseController;
 import just.entity.User;
 import just.service.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 //@PreAuthorize("hasRole('ADMIN')")
-public class UserController {
+public class UserController extends BaseController{
 
     @Autowired
     private UserRepository repository;

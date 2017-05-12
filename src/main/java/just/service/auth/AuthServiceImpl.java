@@ -1,14 +1,16 @@
 package just.service.auth;
 
 import com.google.common.collect.Lists;
+import just.VO.bloguser.ModifyUserVO;
+import just.common.util.BeanHelper;
+import just.common.util.JwtTokenUtil;
+import just.common.util.SensitiveWordInit;
+import just.common.util.SensitivewordEngine;
 import just.entity.SensitiveWord;
 import just.entity.User;
 import just.service.jwt.JwtUser;
 import just.service.sensitiveword.SensitiveWordRepository;
 import just.service.user.UserRepository;
-import just.util.JwtTokenUtil;
-import just.util.SensitiveWordInit;
-import just.util.SensitivewordEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,12 +21,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional
 public class AuthServiceImpl implements AuthService {
 
     private AuthenticationManager authenticationManager;
@@ -88,6 +92,29 @@ public class AuthServiceImpl implements AuthService {
         }
         return null;
     }
+
+    @Transactional
+    @Override
+    public void modify(ModifyUserVO modifiedUser) {
+        User user = userRepository.findUserById(modifiedUser.getId());
+        String password = modifiedUser.getPassword();
+        if(password!=null){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            modifiedUser.setPassword(encoder.encode(password));
+        }
+        BeanHelper.copyPropertiesIgnoreNull(modifiedUser,user);
+    }
+
+    @Override
+    public User get(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+    @Override
+    public User get(String username) {
+        return userRepository.findByUsername(username);
+    }
+
 
     @Override
     public boolean isUsernameDuplicate(String username) {

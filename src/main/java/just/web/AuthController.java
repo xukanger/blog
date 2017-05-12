@@ -2,16 +2,24 @@ package just.web;
 
 import com.google.code.kaptcha.Producer;
 import just.VO.JSONResult;
+import just.VO.bloguser.ModifyUserVO;
+import just.VO.bloguser.NewUserVO;
+import just.VO.bloguser.SimpleUserVO;
 import just.VO.jwt.JwtAuthenticationRequest;
 import just.VO.jwt.JwtAuthenticationResponse;
+import just.common.controller.BaseController;
+import just.common.util.CookieUtil;
+import just.common.util.WebUtils;
 import just.entity.User;
 import just.service.auth.AuthService;
-import just.util.CookieUtil;
+import just.service.jwt.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,13 +28,15 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @RestController
-public class AuthController {
+public class AuthController extends BaseController{
+
     @Value("${jwt.header}")
     private String tokenHeader;
 
@@ -39,15 +49,20 @@ public class AuthController {
 
     private final RedisTemplate<String,String> redisTemplate;
 
+    private final ResourceLoader resourceLoader;
+
     @Autowired
-    public AuthController(AuthService authService, Producer captchaProducer, RedisTemplate<String, String> redisTemplate) {
+    public AuthController(AuthService authService, Producer captchaProducer, RedisTemplate<String, String> redisTemplate, ResourceLoader resourceLoader) {
         this.authService = authService;
         this.captchaProducer = captchaProducer;
         this.redisTemplate = redisTemplate;
+        this.resourceLoader = resourceLoader;
     }
 
 
-    //获取token登录
+    /*
+     *获取token登录
+     */
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
             @RequestBody JwtAuthenticationRequest authenticationRequest,
@@ -59,10 +74,12 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
-    //刷新token
-    @RequestMapping(value = "refresh", method = RequestMethod.GET)
+    /*
+     *刷新token
+     */
+    @RequestMapping(value = "/refresh", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(
-            HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+            HttpServletRequest request, HttpServletResponse response) {
         String token = CookieUtil.getCookie(request,tokenHeader);
         String refreshedToken = authService.refresh(token);
         if(refreshedToken == null) {
@@ -73,12 +90,66 @@ public class AuthController {
         }
     }
 
-    //注册
+    /*
+     *注册
+     */
     @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
-    public User register(@RequestBody User addedUser) throws AuthenticationException {
-        return authService.register(addedUser);
+    public JSONResult register(@RequestBody @Valid NewUserVO addedUser,
+                               @CookieValue("captchaCode") String captchaCode) {
+        String correctCode = redisTemplate.opsForValue().get(captchaCode);
+        if(correctCode==null)
+            return JSONResult.fillResultString(null,"验证码失效",false);
+        else if(!correctCode.equals(addedUser.getCode()))
+            return JSONResult.fillResultString(null,"验证码错误",false);
+        else if(authService.register(addedUser.VO2Entity())!=null)
+            return JSONResult.fillResultString(null,"成功",true);
+        else
+            return JSONResult.fillResultString(null,"注册失败",false);
     }
 
+    /*
+     *修改用户
+     */
+    @RequestMapping(value = "/user/modify", method = RequestMethod.POST)
+    public JSONResult modify(@RequestBody @Valid ModifyUserVO modifiedUser) {
+        authService.modify(modifiedUser);
+        return JSONResult.fillResultString(null,"成功",true);
+    }
+
+    /*
+     *simple get用户
+     */
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public JSONResult simpleGet(@PathVariable("id") Long id) {
+        User user = authService.get(id);
+        if(user==null)return JSONResult.fillResultString(null,"不存在",null);
+        SimpleUserVO simpleUserVO = new SimpleUserVO();
+        return JSONResult.fillResultString(null,"成功",simpleUserVO.Entity2VO(user));
+    }
+
+    /*
+     *get用户自身
+     * 树形结构尚未搞定
+     */
+    //TODO
+    @RequestMapping(value = "/user/details", method = RequestMethod.GET)
+    public JSONResult get() {
+        UserDetails userDetails = WebUtils.getCurrentUser();
+        if(userDetails instanceof JwtUser){
+            User user = authService.get(((JwtUser) userDetails).getId());
+            SimpleUserVO simpleUserVO = new SimpleUserVO();
+            return JSONResult.fillResultString(null,"成功",simpleUserVO.Entity2VO(user));
+        }else{
+            return JSONResult.fillResultString(null,"未登录",null);
+        }
+
+    }
+
+
+
+    /*
+     *先检测用户名敏感词，再检测用户名重复
+     */
     @RequestMapping(value = "/examine/duplicate/username/{username}", method = RequestMethod.POST)
     public JSONResult checkUsernameDuplicate(@PathVariable String username){
         if(authService.isDataSensitive(username))
@@ -89,6 +160,9 @@ public class AuthController {
             return JSONResult.fillResultString(null,"成功",true);
     }
 
+    /*
+     *检测用户名敏感度
+     */
     @RequestMapping(value = "/examine/sensitive/username/{username}", method = RequestMethod.POST)
     public JSONResult checkUsernameSensitive(@PathVariable String username){
         if(authService.isDataSensitive(username))
@@ -97,7 +171,9 @@ public class AuthController {
             return JSONResult.fillResultString(null,"成功",true);
     }
 
-
+    /*
+     *图形验证码
+     */
     @RequestMapping(value = "/captcha-image")
     public ModelAndView getKaptchaImage(HttpServletRequest request,
                                         HttpServletResponse response) throws IOException {
@@ -111,7 +187,7 @@ public class AuthController {
         String capText = captchaProducer.createText();
         try {
             String uuid= UUID.randomUUID().toString();
-            redisTemplate.opsForValue().set(uuid, capText,60*5, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set(uuid, capText,60, TimeUnit.SECONDS);
             Cookie cookie = new Cookie("captchaCode",uuid);
             response.addCookie(cookie);
         } catch (Exception e) {
@@ -127,7 +203,9 @@ public class AuthController {
         }
         return null;
     }
-
+    /*
+     *检验验证码
+     */
     @RequestMapping(value = "/verify/{code}" , method = RequestMethod.POST)
     public JSONResult verifyCode(@PathVariable String code,
                              @CookieValue("captchaCode") String captchaCode){
@@ -139,6 +217,8 @@ public class AuthController {
         else
             return JSONResult.fillResultString(null,"失败",false);
     }
+
+
 
     private void addAuthCookie(HttpServletResponse response,String token){
         CookieUtil.addCookie(response,tokenHeader,token,Math.toIntExact(expiration));

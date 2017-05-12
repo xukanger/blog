@@ -32,10 +32,12 @@ public class User {
     private Date lastPasswordResetDate;
 
     private String role;
-//
+
 //    @OneToMany(cascade={ CascadeType.ALL })
 //    @JoinColumn(name="")
 //    private List<Article> paragraphs;
+
+
 
 
     public String getNickname() {

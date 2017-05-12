@@ -1,10 +1,13 @@
 package just.VO.bloguser;
 
+import just.common.vo.BaseVO;
+import just.entity.User;
+
 /**
  * Created by llf on 2017/5/2.
  * 只显示用户头像和名称
  */
-public class SimpleUserVO {
+public class SimpleUserVO extends BaseVO<SimpleUserVO,User>{
     private Long id;
     private String portrait;//头像地址
     private String nickname;//昵称
@@ -31,5 +34,10 @@ public class SimpleUserVO {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    @Override
+    public User VO2Entity() {
+        return null;
     }
 }

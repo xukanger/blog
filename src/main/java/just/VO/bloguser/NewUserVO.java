@@ -1,16 +1,41 @@
 package just.VO.bloguser;
 
+import just.common.vo.BaseVO;
+import just.entity.User;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by llf on 2017/5/2.
  * 用户类，用于注册
  */
-public class NewUserVO {
+public class NewUserVO extends BaseVO<NewUserVO,User> {
+
+    @NotNull
+    @NotBlank
     private String username;
+
+    @NotNull
+    @NotBlank
     private String password;
+
     private String nickname;//昵称
+
     private String mailbox;//邮箱
+
     private String portrait;//头像地址
+
+    @NotNull
+    @NotBlank
     private String code;
+
+    @Override
+    public User VO2Entity(){
+        User newUser = new User();
+        super.VO2Entity(newUser);
+        return newUser;
+    }
 
     public String getCode() {
         return code;
@@ -59,4 +84,5 @@ public class NewUserVO {
     public void setMailbox(String mailbox) {
         this.mailbox = mailbox;
     }
+
 }
