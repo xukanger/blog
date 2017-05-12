@@ -95,6 +95,7 @@ html,body{
     width: 50%;
     margin-right: 5%;
     display: inline;
+    vertical-align: middle;
 }
 .fromSub{
     display: block;
@@ -119,10 +120,11 @@ html,body{
     color: #3b9bf8;
 }
 .inCode{
-    width: 40%;
-    height: 37.6px;
+    width: 43%;
+    height: 38px;
     display:inline-flex;
+    vertical-align: middle;
 }
 .inCode img{
-    margin-top: 10px;
+    width: 100%;
 }
