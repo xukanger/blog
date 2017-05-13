@@ -13,7 +13,7 @@ $(function(){
         "mailbox":"",
         "portrait":"",
         "code":""
-    }
+    };
     //验证
     var ajaxBlur =[
         {id:'#username',url:'/examine/duplicate/username/',pass:false},
@@ -26,6 +26,9 @@ $(function(){
     ajaxBlur.forEach(function(e,i,a){
         ajaxProp(e.id,e.url)
     });
+
+    $("#regbtn").on("click",doRegister());
+
     function ajaxProp(id,url){
         //异步验证
         $(id).blur(function () {
@@ -130,36 +133,44 @@ $(function(){
         })
     }
 
-    function doregister(){
+    function doRegister(){
         var reg = $("#regbtn");
         ajaxBlur.forEach(function(e,i,a){
            if(!e.pass){
-               var reg = $("#regbtn");
-
                reg.popover({placement:'top', delay: {show: 100}, html: true,
                    content: function () {
                        return "注册信息有误";
                    }});
 
-               setTimeout(function () {
-
-                   // reg.popover('destroy');
-
+              var  time = setTimeout(function () {
+                   reg.popover('hide');
                }, 3000);
-
+               clearTimeout(time);
                return;
            }
+
+
         });
         userVO.username =  $("#username").val();
         userVO.nickname =  $("#nickname").val();
         userVO.password = $("#password").val();
         userVO.mailbox = $("#email").val();
         userVO.code = $("#invit").val();
-        // $.post("/auth/register",JSON.stringify(userVO),function (post){
-        //
-        // });
+        $.ajax({
+            url : "/auth/register",
+            type : "POST",
+            data : JSON.stringify(userVO), //转JSON字符串
+            dataType: 'json',
+            contentType:'application/json;charset=UTF-8', //contentType很重要
+            success : function(result) {
+                reg.popover({placement:'top', delay: {show: 100}, html: true,
+                    content: function () {
+                        return "注册成功";
+                    }});
+            }
+        });
     }
-    $("#regbtn").on("click",doregister());
+
 });
 
 
