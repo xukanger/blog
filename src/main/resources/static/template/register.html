@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="/style/css/login.css" type="text/css">
     <link rel="stylesheet" href="/style/lib/bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="/style/lib/jquery.uploadify/uploadify.css" type="text/css">
-    <script src="/style/lib/jquery/jquery-2.1.4.min.js"></script>
+    <script src="/style/lib/jquery/jquery-1.11.0.min.js"></script>
     <script src="/style/lib/jquery.uploadify/jquery.uploadify.js"></script>
     <script src="/style/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="/style/js/controller/register.js"></script>
 
 </head>
 <body>
@@ -23,8 +24,8 @@
                     <label id="userShow" for="userimg">
                         <img src="/style/img/userimg/userImg.jpg" alt="">
                     </label>
+                    <input type="file" id="userimg">
                 </div>
-                <input type="file" id="userimg">
                 <div class="form-group">
                     <!--<input type="file" id="userimg">-->
                     <label for="username">用户名</label>
@@ -55,8 +56,8 @@
                         </div>
                 </div>
             </from>
-            <div  data-toggle="popover" data-placement="top">
-            <a id= "regbtn"href="javascript:;" class="fromSub">注册</a>
+            <div id= "regbtn" data-toggle="popover" data-placement="top">
+            <a href="javascript:;" class="fromSub">注册</a>
             </div>
         </div>
     </div>
@@ -83,12 +84,12 @@
 //        }
 //    }
     $(function () {
-        $('#userShow').click(function(){
+        $('#userShow').click{
             $('#userimg').uploadify({
                 'uploadLimit':1,
                 'fileTypeExts':'*.jpg; *.png; *.gif',
                 'swf':'/style/lib/jquery.uploadify/uploadify.swf',
-                'uploader':' ',//接口
+                'uploader':'',//接口
                 'fileSizeLimit':'1MB',
                 'fileObjName':'filedata',
                 //设置在后台脚本使用的文件名。举个例子，在php中，如果这个选项设置为'the_files',你可以使用$_FILES['the_files']存取这个已经上传的文件。
@@ -106,9 +107,8 @@
                         + ' - 是否上传成功: ' + response);
                 }
             })
-        })
-    });
+        }
+    })
 </script>
-    <script src="/style/js/controller/register.js"></script>
 </body>
 </html>

@@ -34,22 +34,22 @@ $(function () {
 window.onscroll=function () {
     lazyArticle()
 }
-lazyArticle()
+// lazyArticle()
 function lazyArticle() {
     var modelArr = document.getElementsByClassName('articleModel')
     var getClient = getClient()
-    console.log(getClient)
-    console.log(modelArr)
+    // console.log(getClient)
+    // console.log(modelArr)
 
     for (var i = 0; i < modelArr.length; i++) {
         var modelClient = getSubClient(modelArr[i])
         var JQe = $(modelArr[i])
         var bol = intens(modelClient, getClient)
         if (bol) {
-            console.log(1)
+            // console.log(1)
             JQe.addClass('aos-animate')
         } else {
-            console.log(2)
+            // console.log(2)
             JQe.removeClass('aos-animate')
         }
     }
