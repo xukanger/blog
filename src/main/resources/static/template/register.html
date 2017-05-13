@@ -84,30 +84,33 @@
 //        }
 //    }
     $(function () {
-        $('#userShow').click{
-            $('#userimg').uploadify({
-                'uploadLimit':1,
-                'fileTypeExts':'*.jpg; *.png; *.gif',
-                'swf':'/style/lib/jquery.uploadify/uploadify.swf',
-                'uploader':'',//接口
-                'fileSizeLimit':'1MB',
-                'fileObjName':'filedata',
-                //设置在后台脚本使用的文件名。举个例子，在php中，如果这个选项设置为'the_files',你可以使用$_FILES['the_files']存取这个已经上传的文件。
-                'onUploadSuccess':function (file,data,response) {
-                    //成功后出发
-                    alert( 'id: ' + file.id
-                        + ' - 索引: ' + file.index
-                        + ' - 文件名: ' + file.name
-                        + ' - 文件大小: ' + file.size
-                        + ' - 类型: ' + file.type
-                        + ' - 创建日期: ' + file.creationdate
-                        + ' - 修改日期: ' + file.modificationdate
-                        + ' - 文件状态: ' + file.filestatus
-                        + ' - 服务器端消息: ' + data
-                        + ' - 是否上传成功: ' + response);
-                }
+        $('#userShow').click(
+
+            function () {
+                $('#userimg').uploadify({
+                    'uploadLimit': 1,
+                    'fileTypeExts': '*.jpg; *.png; *.gif',
+                    'swf': '/style/lib/jquery.uploadify/uploadify.swf',
+                    'uploader': '',//接口
+                    'fileSizeLimit': '1MB',
+                    'fileObjName': 'filedata',
+                    //设置在后台脚本使用的文件名。举个例子，在php中，如果这个选项设置为'the_files',你可以使用$_FILES['the_files']存取这个已经上传的文件。
+                    'onUploadSuccess': function (file, data, response) {
+                        //成功后出发
+                        alert('id: ' + file.id
+                            + ' - 索引: ' + file.index
+                            + ' - 文件名: ' + file.name
+                            + ' - 文件大小: ' + file.size
+                            + ' - 类型: ' + file.type
+                            + ' - 创建日期: ' + file.creationdate
+                            + ' - 修改日期: ' + file.modificationdate
+                            + ' - 文件状态: ' + file.filestatus
+                            + ' - 服务器端消息: ' + data
+                            + ' - 是否上传成功: ' + response);
+                    }
+                })
             })
-        }
+
     })
 </script>
 </body>
