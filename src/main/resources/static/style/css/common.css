@@ -3,6 +3,23 @@ a:hover,a:link,a:valid,a:active{
     text-decoration:none;
     color: inherit;
 }
+.trip{
+    display: none;
+    position: fixed;
+    top:0;
+    left: 50%;
+    padding: 10px 15px;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: white;
+    border-radius: 0 0 10px 10px;
+    z-index: 1000;
+    min-width: 150px;
+    text-align: center;
+}
+.trip.error{background-color: #ff5151;}
+.trip.success{background-color: #3b9bf8;}
+
 .navbar-inverse .navbar-nav > li > a{
     color: white;
 }

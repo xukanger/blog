@@ -27,7 +27,9 @@ $(function(){
         ajaxProp(e.id,e.url)
     });
 
-    $("#regbtn").on("click",doRegister());
+    $("#regbtn").click(function () {
+        doRegister()
+    });
 
     function ajaxProp(id,url){
         //异步验证
@@ -137,15 +139,7 @@ $(function(){
         var reg = $("#regbtn");
         ajaxBlur.forEach(function(e,i,a){
            if(!e.pass){
-               reg.popover({placement:'top', delay: {show: 100}, html: true,
-                   content: function () {
-                       return "注册信息有误";
-                   }});
-
-              var  time = setTimeout(function () {
-                   reg.popover('hide');
-               }, 3000);
-               clearTimeout(time);
+               trip.error('注册信息有误')
                return;
            }
 
@@ -163,14 +157,28 @@ $(function(){
             dataType: 'json',
             contentType:'application/json;charset=UTF-8', //contentType很重要
             success : function(result) {
-                reg.popover({placement:'top', delay: {show: 100}, html: true,
-                    content: function () {
-                        return "注册成功";
-                    }});
+                trip.success('注册成功')
             }
         });
     }
-
+    var trip ={
+        error:function (title) {
+            $('#trip').removeClass('success').addClass('error')
+            this._fun(title)
+        },
+        success:function (title) {
+            $('#trip').removeClass('error').addClass('success')
+            this._fun(title)
+        },
+        _fun:function (title) {
+            $('#trip').text(title)
+            $('#trip').show(500,function () {
+                setTimeout(function () {
+                    $('#trip').hide()
+                }, 2000);
+            })
+        }
+    }
 });
 
 
