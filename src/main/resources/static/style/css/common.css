@@ -42,6 +42,16 @@ a:hover,a:link,a:valid,a:active{
     -webkit-align-items: center;
     align-items: center
 }
+.woqu-flex-startWrap {
+    -webkit-box-pack: start !important;
+    -webkit-justify-content: flex-start !important;
+    justify-content: flex-start !important;
+    -webkit-box-align: flex-start !important;
+    -webkit-align-items: center !important;
+    align-items: center !important;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap
+}
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
@@ -422,7 +432,107 @@ ul{
     font-weight: 600;
     letter-spacing: 1px;
  }
-
+/*用户面版*/
+.userPanel{
+    position: fixed;
+    top:50%;
+    left: 0;
+    transform: translate(-101%,-50%);
+    width: 250px;
+    max-height: 85%;
+    padding: 40px 15px 10px;
+    transition: all ease-out .3s;
+}
+.userPanel .hoverOpen{
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    width: 30px;
+    height: 50px;
+    line-height: 50px;
+    background-color: rgba(230,238,232,0.5);
+    border-radius: 0 10px 10px 0;
+    text-align: center;
+}
+.userPanel .hoverOpen i{
+     transition: all ease-out .3s;
+     transform:rotateY(0deg);
+ }
+.userPanel:hover .hoverOpen i{
+    transform:rotateY(180deg);
+}
+.userPanel:hover{
+    transform: translate(0%,-50%);
+}
+.userInfo{
+    padding: 15px;
+    font-size: 14px;
+}
+.userInfo .user-group{
+    margin-bottom: 5px;
+}
+.user-group .userTile{
+    color: #111;
+    width: 45px;
+    display: inline-block;
+}
+.user-group .userval{
+    color: #585858;
+}
+.myConcern,.concernToMe{
+    padding: 7px 15px 15px 7px;
+}
+.concern{
+    margin-left: 8px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+.concern .concernImg{
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.concern .concernImg img{
+    width: 100%;
+}
+.concern .concernName{
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    color: #111;
+    font-size: 12px;
+}
+.userPanelPreview label span{
+    color: #585858;
+    font-size: 14px;
+}
+.hidePer{
+    height: 100%;
+    overflow: hidden;
+}
+.hidePer .sorc{
+    width: calc(100% + 20px);
+    height: 100%;
+    overflow-y: scroll;
+}
+.userAvatar{
+    position: absolute;
+    top:0;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 100%;
+    border: 1px solid #fbfbfb;
+}
+.userAvatar img{
+    width: 100%;
+    display: block;
+}
 /*动画代码区*/
 @keyframes imageAnimation {
     0% {

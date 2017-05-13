@@ -18,15 +18,15 @@ myApp.config(['$routeProvider',function($routeProvider){
             })
             .otherwise({redirectTo:'/'});
     }]);
-myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route',function ($scope, $filter, $routeParams,$route) {
-
-}]);
-myApp.controller('userhomeController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-
-}]);
-myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-
-}]);
+// myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route',function ($scope, $filter, $routeParams,$route) {
+//
+// }]);
+// myApp.controller('userhomeController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
+//
+// }]);
+// myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
+//
+// }]);
 $(function () {
 /*
 * 滚动翻转
