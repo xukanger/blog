@@ -31,9 +31,7 @@ myApp.config(['$routeProvider',function($routeProvider){
 // myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
 //
 // }]);
-myApp.controller('writearticleController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-
-}]);
+//
 $(function () {
 /*
 * 滚动翻转
