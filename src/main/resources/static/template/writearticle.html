@@ -11,4 +11,24 @@
     </div>
 </div>
 <div class="col-md-4">
+    <div id="editor" type="text/plain" ueditor="editor"></div>
 </div>
+
+
+
+
+<script type="text/javascript">
+    var ue = UE.getEditor('editor', {
+        initialContent: "",
+        autoHeightEnabled:false,
+        autoFloatEnabled:true,
+        initialFrameWidth:1000,
+        initialFrameHeight:500,
+        wordCount:false,
+        'paragraph':{'p':'正文', 'h1':'标题 1', 'h2':'标题 2', 'h3':'标题 3', 'h4':'标题 4'},
+    });
+
+    ue.ready(function(){
+        ue.focus();
+    })
+</script>

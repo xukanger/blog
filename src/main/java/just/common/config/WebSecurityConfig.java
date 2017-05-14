@@ -67,11 +67,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/favicon.ico",
                         "/**/*.html",
                         "/**/*.css",
+                        "/**/*.map",
                         "/**/*.js",
                         "/*/img/**",
                         "/**/*.woff2",
                         "/**/*.ttf",
-                        "/**/ueditor/*",
+                        "/**/ueditor/**",
                         "/captcha-image"
                 ).permitAll()
                 // 对于获取token的rest api要允许匿名访问
