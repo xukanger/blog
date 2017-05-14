@@ -71,6 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/*/img/**",
                         "/**/*.woff2",
                         "/**/*.ttf",
+                        "/**/ueditor/*",
                         "/captcha-image"
                 ).permitAll()
                 // 对于获取token的rest api要允许匿名访问
