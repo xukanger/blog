@@ -5,9 +5,9 @@
 var myApp = angular.module('myApp',['ngRoute'])
 myApp.config(['$routeProvider',function($routeProvider){
         $routeProvider.when('/',{
-            templateUrl:'home.html',
-            controller:'homeController'
-        })
+                templateUrl:'home.html',
+                controller:'homeController'
+            })
             .when('/userhome',{
                 templateUrl:'userhome.html',
                 controller:'userhomeController'
@@ -15,6 +15,10 @@ myApp.config(['$routeProvider',function($routeProvider){
             .when('/message',{
                 templateUrl:'message.html',
                 controller:'messageController'
+            })
+            .when('/writearticle',{
+                templateUrl:'writearticle.html',
+                controller:'writearticleController'
             })
             .otherwise({redirectTo:'/'});
     }]);
@@ -27,6 +31,9 @@ myApp.config(['$routeProvider',function($routeProvider){
 // myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
 //
 // }]);
+myApp.controller('writearticleController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
+
+}]);
 $(function () {
 /*
 * 滚动翻转
