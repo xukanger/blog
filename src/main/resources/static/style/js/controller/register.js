@@ -13,7 +13,7 @@ $(function(){
         "mailbox":"",
         "portrait":"",
         "code":""
-    }
+    };
     //验证
     var ajaxBlur =[
         {id:'#username',url:'/examine/duplicate/username/',pass:false},
@@ -26,6 +26,11 @@ $(function(){
     ajaxBlur.forEach(function(e,i,a){
         ajaxProp(e.id,e.url)
     });
+
+    $("#regbtn").click(function () {
+        doRegister()
+    });
+
     function ajaxProp(id,url){
         //异步验证
         $(id).blur(function () {
@@ -130,36 +135,53 @@ $(function(){
         })
     }
 
-    function doregister(){
+    function doRegister(){
         var reg = $("#regbtn");
+        var passLength = 0;
         ajaxBlur.forEach(function(e,i,a){
            if(!e.pass){
-               var reg = $("#regbtn");
-
-               reg.popover({placement:'top', delay: {show: 100}, html: true,
-                   content: function () {
-                       return "注册信息有误";
-                   }});
-
-               setTimeout(function () {
-
-                   // reg.popover('destroy');
-
-               }, 3000);
-
+               trip.error('注册信息有误')
                return;
+           }else {
+               passLength++
            }
         });
-        userVO.username =  $("#username").val();
-        userVO.nickname =  $("#nickname").val();
-        userVO.password = $("#password").val();
-        userVO.mailbox = $("#email").val();
-        userVO.code = $("#invit").val();
-        // $.post("/auth/register",JSON.stringify(userVO),function (post){
-        //
-        // });
+        if(passLength == ajaxBlur.length){
+            userVO.username =  $("#username").val();
+            userVO.nickname =  $("#nickname").val();
+            userVO.password = $("#password").val();
+            userVO.mailbox = $("#email").val();
+            userVO.code = $("#invit").val();
+            $.ajax({
+                url : "/auth/register",
+                type : "POST",
+                data : JSON.stringify(userVO), //转JSON字符串
+                dataType: 'json',
+                contentType:'application/json;charset=UTF-8', //contentType很重要
+                success : function(result) {
+                    trip.success('注册成功')
+                }
+            });
+        }
     }
-    $("#regbtn").on("click",doregister());
+    var trip ={
+        error:function (title) {
+            $('#trip').removeClass('success').addClass('error')
+            this._fun(title)
+        },
+        success:function (title) {
+            $('#trip').removeClass('error').addClass('success')
+            this._fun(title)
+        },
+        _fun:function (title) {
+            $('#trip').text(title)
+            $('#trip').show(500,function () {
+                setTimeout(function () {
+                    $('#trip').hide()
+                }, 2000);
+            })
+        }
+    }
 });
 
 

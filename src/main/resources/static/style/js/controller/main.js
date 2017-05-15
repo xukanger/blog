@@ -5,9 +5,9 @@
 var myApp = angular.module('myApp',['ngRoute'])
 myApp.config(['$routeProvider',function($routeProvider){
         $routeProvider.when('/',{
-            templateUrl:'home.html',
-            controller:'homeController'
-        })
+                templateUrl:'home.html',
+                controller:'homeController'
+            })
             .when('/userhome',{
                 templateUrl:'userhome.html',
                 controller:'userhomeController'
@@ -16,17 +16,22 @@ myApp.config(['$routeProvider',function($routeProvider){
                 templateUrl:'message.html',
                 controller:'messageController'
             })
+            .when('/writearticle',{
+                templateUrl:'writearticle.html',
+                controller:'writearticleController'
+            })
             .otherwise({redirectTo:'/'});
     }]);
-myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route',function ($scope, $filter, $routeParams,$route) {
-
-}]);
-myApp.controller('userhomeController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-
-}]);
-myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-
-}]);
+// myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route',function ($scope, $filter, $routeParams,$route) {
+//
+// }]);
+// myApp.controller('userhomeController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
+//
+// }]);
+// myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
+//
+// }]);
+//
 $(function () {
 /*
 * 滚动翻转
@@ -34,22 +39,22 @@ $(function () {
 window.onscroll=function () {
     lazyArticle()
 }
-lazyArticle()
+// lazyArticle()
 function lazyArticle() {
     var modelArr = document.getElementsByClassName('articleModel')
     var getClient = getClient()
-    console.log(getClient)
-    console.log(modelArr)
+    // console.log(getClient)
+    // console.log(modelArr)
 
     for (var i = 0; i < modelArr.length; i++) {
         var modelClient = getSubClient(modelArr[i])
         var JQe = $(modelArr[i])
         var bol = intens(modelClient, getClient)
         if (bol) {
-            console.log(1)
+            // console.log(1)
             JQe.addClass('aos-animate')
         } else {
-            console.log(2)
+            // console.log(2)
             JQe.removeClass('aos-animate')
         }
     }

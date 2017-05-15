@@ -144,7 +144,7 @@ public class AuthController extends BaseController{
         String capText = captchaProducer.createText();
         try {
             String uuid= UUID.randomUUID().toString();
-            redisTemplate.opsForValue().set(uuid, capText,60, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set(uuid, capText,5*60, TimeUnit.SECONDS);
             Cookie cookie = new Cookie("captchaCode",uuid);
             response.addCookie(cookie);
         } catch (Exception e) {
