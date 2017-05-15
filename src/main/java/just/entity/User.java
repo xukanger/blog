@@ -1,20 +1,17 @@
 package just.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import just.common.entity.BaseEntity;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by yt on 2017/4/29.
  */
 @Entity
-public class User {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+@Table(name = "t_user")
+public class User extends BaseEntity{
 
     @Column(nullable = false)
     private String username;
@@ -31,13 +28,20 @@ public class User {
 
     private Date lastPasswordResetDate;
 
-    private String role;
+    private String role;//角色
 
-//    @OneToMany(cascade={ CascadeType.ALL })
-//    @JoinColumn(name="")
-//    private List<Article> paragraphs;
+    private List<Article> articles;//文章
 
+    private List<Comment> comments;//评论
 
+    private Integer coin;//硬币
+
+    private List<User> concern;//我关注对象
+
+    private List<User> concerned;//关注我的对象
+
+    public User() {
+    }
 
 
     public String getNickname() {
@@ -62,14 +66,6 @@ public class User {
 
     public void setMailbox(String mailbox) {
         this.mailbox = mailbox;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -102,5 +98,64 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @OneToMany(
+            mappedBy="user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            targetEntity=Article.class,
+            fetch=FetchType.LAZY
+    )
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
+
+    @OneToMany(
+            mappedBy="commenter",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            targetEntity=Comment.class,
+            fetch=FetchType.LAZY
+    )
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Integer getCoin() {
+        return coin;
+    }
+
+    public void setCoin(Integer coin) {
+        this.coin = coin;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "concerned")
+    public List<User> getConcern() {
+        return concern;
+    }
+
+    public void setConcern(List<User> concern) {
+        this.concern = concern;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "concern_concerned",
+            joinColumns = {@JoinColumn(name = "concerned_id")},
+            inverseJoinColumns = {@JoinColumn(name = "concern_id")}
+    )
+    public List<User> getConcerned() {
+        return concerned;
+    }
+
+    public void setConcerned(List<User> concerned) {
+        this.concerned = concerned;
     }
 }

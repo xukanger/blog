@@ -1,5 +1,7 @@
 package just.entity;
 
+import just.common.entity.BaseEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,13 +10,9 @@ import javax.persistence.Id;
  * Created by yt on 2017/5/8.
  */
 @Entity
-public class SensitiveWord {
+public class SensitiveWord extends BaseEntity {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    String content;
+    private String content;
 
     public String getContent() {
         return content;
