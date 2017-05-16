@@ -20,18 +20,16 @@ myApp.config(['$routeProvider',function($routeProvider){
                 templateUrl:'writearticle.html',
                 controller:'writearticleController'
             })
+            .when('/articleDetails',{
+                templateUrl:'articleDetails.html',
+                controller:'articleDetailsController'
+            })
             .otherwise({redirectTo:'/'});
     }]);
-// myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route',function ($scope, $filter, $routeParams,$route) {
-//
-// }]);
-// myApp.controller('userhomeController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-//
-// }]);
-// myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-//
-// }]);
-//
+
+myApp.controller('articleDetailsController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
+
+}]);
 $(function () {
 /*
 * 滚动翻转

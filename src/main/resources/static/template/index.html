@@ -21,30 +21,7 @@
     <script type="text/javascript" src="/style/ueditor/ueditor.all.js"></script>
 </head>
 <body>
-<section>
-    <ul class="bgSlideShow">
-        <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
-    </ul>
-</section>
-<div class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <div class="navbar-collapse bs-navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#/home">首页</a></li>
-                    <li><a href="#/userhome">个人主页</a></li>
-                    <li><a href="#/message">留言</a></li>
-                    <li><a href="#/writearticle">写文章</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<div ng-include="'/template/assembly/header.html'"></div>
 <div class="container mgt-50">
     <div class="row">
         <div ng-view></div>
