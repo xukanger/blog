@@ -6,11 +6,11 @@
     <form action="">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input type="text" class="form-control" aria-describedby="sizing-addon2" value="{{user.username}}" >
+            <input type="text" class="form-control" aria-describedby="sizing-addon2" ng-model="user.username" value="{{user.username}}" >
         </div>
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" aria-describedby="sizing-addon2"  value="{{user.password}}">
+            <input type="password" class="form-control" aria-describedby="sizing-addon2" ng-model="user.password" value="{{user.password}}">
         </div>
         <div class="input-group" style="width: 100%;margin: 0">
             <div class="checkbox">

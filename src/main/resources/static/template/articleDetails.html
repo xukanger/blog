@@ -1,11 +1,105 @@
-<div class="col-md-8">
-    文章详情
-</div>
-<div class="col-md-4">
-    <!--搜索-->
-    <div ng-include="'/template/assembly/search.html'"></div>
-    <!--登陆-->
-    <div ng-include="'/template/assembly/login.html'"></div>
-    <!--文章-->
-    <div ng-include="'/template/assembly/newArticle.html'"></div>
+<div class="" ng-controller="articleDetailsController">
+    <div class="col-md-8">
+        <article class="boxShadow pad-15">
+            <div class="articleTitle text-center"><h2>详细日志TOP1</h2></div>
+            <div class="articleTag text-center">
+                <span class="label">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    2017-1-1
+                </span>
+                <span class="label">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                    45℃
+                </span>
+            </div>
+            <div class="articleInfo">
+                adfahsdfkjasdfkhasifuwehfiawf<br>
+                sdfadsfasdfasdfasdfasdfasdfasd
+            </div>
+        </article>
+        <div class="articleComment">
+            <div class="commentTotal boxShadow">
+                <i class="glyphicon glyphicon-comment"></i> 60评论
+            </div>
+            <ol>
+                <li class="comment boxShadow">
+                    <article class="rel">
+                        <div class="commentImg">
+                            <img src="/style/img/userimg/userImg.jpg" alt="">
+                        </div>
+                        <div class="commentHead">
+                            <span>aaa</span>说到：
+                            <span class="fr">2017年2月14号 下午5：02</span>
+                        </div>
+                        <div class="commentInfo">
+                            <p>地方士大夫撒旦</p>
+                        </div>
+                        <a href="#">登陆回复</a>
+                    </article>
+                    <ol>
+                        <li class="comment boxShadow">
+                            <article class="rel">
+                                <div class="commentImg">
+                                    <img src="/style/img/userimg/userImg.jpg" alt="">
+                                </div>
+                                <div class="commentHead">
+                                    <span>aaa</span>说到：
+                                    <span class="fr">2017年2月14号 下午5：02</span>
+                                </div>
+                                <div class="commentInfo">
+                                    <p>地方士大夫撒旦</p>
+                                </div>
+                                <a href="#">登陆回复</a>
+                            </article>
+                        </li>
+                        <li class="comment boxShadow">
+                            <article class="rel">
+                                <div class="commentImg">
+                                    <img src="/style/img/userimg/userImg.jpg" alt="">
+                                </div>
+                                <div class="commentHead">
+                                    <span>aaa</span>说到：
+                                    <span class="fr">2017年2月14号 下午5：02</span>
+                                </div>
+                                <div class="commentInfo">
+                                    <p>地方士大夫撒旦</p>
+                                </div>
+                                <a href="#">登陆回复</a>
+                            </article>
+                        </li>
+                    </ol>
+                </li>
+                <li class="comment boxShadow">
+                    <article class="rel">
+                        <div class="commentImg">
+                            <img src="/style/img/userimg/userImg.jpg" alt="">
+                        </div>
+                        <div class="commentHead">
+                            <span>aaa</span>说到：
+                            <span class="fr">2017年2月14号 下午5：02</span>
+                        </div>
+                        <div class="commentInfo">
+                            <p>地方士大夫撒旦</p>
+                        </div>
+                        <a href="#">登陆回复</a>
+                    </article>
+                </li>
+            </ol>
+        </div>
+        <div class="respont">
+            <h3><i class="glyphicon glyphicon-pencil"></i>欢迎留言</h3>
+            <form action="">
+                <textarea name="" id="" cols="45" rows="8" placeholder="赶快发表你的意见吧！"></textarea>
+                <input type="submit" value="发表评论">
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <!--搜索-->
+        <div ng-include="'/template/assembly/search.html'"></div>
+        <!--登陆-->
+        <div ng-include="'/template/assembly/login.html'"></div>
+        <!--文章-->
+        <div ng-include="'/template/assembly/newArticle.html'"></div>
+    </div>
 </div>

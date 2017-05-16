@@ -27,9 +27,7 @@ myApp.config(['$routeProvider',function($routeProvider){
             .otherwise({redirectTo:'/'});
     }]);
 
-myApp.controller('articleDetailsController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
 
-}]);
 $(function () {
 /*
 * 滚动翻转
