@@ -1,5 +1,6 @@
 package just.VO.bloguser;
 
+import just.common.util.BeanHelper;
 import just.common.vo.BaseVO;
 import just.entity.User;
 
@@ -38,6 +39,6 @@ public class SimpleUserVO extends BaseVO<SimpleUserVO,User>{
 
     @Override
     public User VO2Entity() {
-        return null;
+        throw new UnsupportedOperationException();
     }
 }

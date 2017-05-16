@@ -1,16 +1,18 @@
 package just.VO.bloguser;
 
 
+import just.common.vo.BaseVO;
+import just.entity.User;
+
 import java.util.List;
 
 /**
  * Created by llf on 2017/5/2.
  * 用于个人信息展示和后台用户查询
  */
-public class UserVO {
+public class UserVO extends BaseVO<UserVO,User> {
     private Long id;
     private String username;//用户名
-    private String password;//密码
     private String nickname;//昵称
     private String mailbox;//邮箱
     private String portrait;//头像地址
@@ -31,14 +33,6 @@ public class UserVO {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getNickname() {
@@ -79,5 +73,10 @@ public class UserVO {
 
     public void setConcerned(List<SimpleUserVO> concerned) {
         this.concerned = concerned;
+    }
+
+    @Override
+    public User VO2Entity() {
+        throw new UnsupportedOperationException();
     }
 }

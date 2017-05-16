@@ -2,6 +2,7 @@ package just.VO.bloguser;
 
 import just.common.vo.BaseVO;
 import just.entity.User;
+import org.springframework.beans.BeanUtils;
 
 import javax.validation.constraints.NotNull;
 
@@ -55,7 +56,7 @@ public class ModifyUserVO extends BaseVO<ModifyUserVO,User>{
     @Override
     public User VO2Entity() {
         User user = new User();
-        super.VO2Entity(user);
+        BeanUtils.copyProperties(this,user);
         return user;
     }
 }

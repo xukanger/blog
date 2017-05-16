@@ -2,24 +2,18 @@ package just.web;
 
 import com.google.code.kaptcha.Producer;
 import just.VO.JSONResult;
-import just.VO.bloguser.ModifyUserVO;
 import just.VO.bloguser.NewUserVO;
-import just.VO.bloguser.SimpleUserVO;
 import just.VO.jwt.JwtAuthenticationRequest;
 import just.VO.jwt.JwtAuthenticationResponse;
 import just.common.controller.BaseController;
 import just.common.util.CookieUtil;
-import just.common.util.WebUtils;
-import just.entity.User;
 import just.service.auth.AuthService;
-import just.service.jwt.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -107,43 +101,6 @@ public class AuthController extends BaseController{
             return JSONResult.fillResultString(null,"注册失败",false);
     }
 
-    /*
-     *修改用户
-     */
-    @RequestMapping(value = "/user/modify", method = RequestMethod.POST)
-    public JSONResult modify(@RequestBody @Valid ModifyUserVO modifiedUser) {
-        authService.modify(modifiedUser);
-        return JSONResult.fillResultString(null,"成功",true);
-    }
-
-    /*
-     *simple get用户
-     */
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public JSONResult simpleGet(@PathVariable("id") Long id) {
-        User user = authService.get(id);
-        if(user==null)return JSONResult.fillResultString(null,"不存在",null);
-        SimpleUserVO simpleUserVO = new SimpleUserVO();
-        return JSONResult.fillResultString(null,"成功",simpleUserVO.Entity2VO(user));
-    }
-
-    /*
-     *get用户自身
-     * 树形结构尚未搞定
-     */
-    //TODO
-    @RequestMapping(value = "/user/details", method = RequestMethod.GET)
-    public JSONResult get() {
-        UserDetails userDetails = WebUtils.getCurrentUser();
-        if(userDetails instanceof JwtUser){
-            User user = authService.get(((JwtUser) userDetails).getId());
-            SimpleUserVO simpleUserVO = new SimpleUserVO();
-            return JSONResult.fillResultString(null,"成功",simpleUserVO.Entity2VO(user));
-        }else{
-            return JSONResult.fillResultString(null,"未登录",null);
-        }
-
-    }
 
 
 

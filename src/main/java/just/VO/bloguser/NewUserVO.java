@@ -3,6 +3,7 @@ package just.VO.bloguser;
 import just.common.vo.BaseVO;
 import just.entity.User;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.BeanUtils;
 
 import javax.validation.constraints.NotNull;
 
@@ -24,8 +25,6 @@ public class NewUserVO extends BaseVO<NewUserVO,User> {
 
     private String mailbox;//邮箱
 
-    private String portrait;//头像地址
-
     @NotNull
     @NotBlank
     private String code;
@@ -33,7 +32,7 @@ public class NewUserVO extends BaseVO<NewUserVO,User> {
     @Override
     public User VO2Entity(){
         User newUser = new User();
-        super.VO2Entity(newUser);
+        BeanUtils.copyProperties(this,newUser);
         return newUser;
     }
 
@@ -43,14 +42,6 @@ public class NewUserVO extends BaseVO<NewUserVO,User> {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getPortrait() {
-        return portrait;
-    }
-
-    public void setPortrait(String portrait) {
-        this.portrait = portrait;
     }
 
     public String getUsername() {
