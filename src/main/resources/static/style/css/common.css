@@ -3,6 +3,17 @@ a:hover,a:link,a:valid,a:active{
     text-decoration:none;
     color: inherit;
 }
+img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.pad-15{
+    padding: 15px;
+}
+i.glyphicon{
+    padding-right: 5px;
+}
 .trip{
     display: none;
     position: fixed;
@@ -193,7 +204,7 @@ ul{
 .dataTime div.day{
     font-size: 30px;
     font-weight: bold;
-    margin-top: -5px;
+    margin-top: 5px;
 }
 .articleTitle{
     font-size: 32px;
@@ -289,18 +300,18 @@ ul{
     -moz-transition: all .35s .3s linear;
     transition: all .35s .3s linear;
 }
-.articleImg a:hover img{
+.articleImg:hover img{
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
     -ms-transform: scale(1.2);
     -o-transform: scale(1.2);
     transform: scale(1.2)
 }
-.articleImg a:hover .info{
+.articleImg:hover .info{
     visibility: visible;
     opacity: 1
 }
-.articleImg a:hover.info h3,.articleImg a:hover .info p {
+.articleImg:hover.info h3,.articleImg:hover .info p {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
@@ -409,7 +420,7 @@ ul{
     padding: 11px 15px;
     border-bottom: 1px solid #dddddd;
 }
-.newArticleList li:last-child{
+.newArticleList a:last-child li{
     border-bottom: 0;
 }
 
@@ -466,6 +477,9 @@ ul{
 .userPanel:hover{
     transform: translate(0%,-50%);
 }
+.userPanelEd{
+    transform: translate(0%,-50%) !important;
+}
 .userInfo{
     padding: 15px;
     font-size: 14px;
@@ -478,8 +492,16 @@ ul{
     width: 45px;
     display: inline-block;
 }
-.user-group .userval{
+.user-group .userVal{
     color: #585858;
+}
+.userVal input{
+    border: 1px solid #d8d8d8;
+    width: 100%;
+    border-radius: 4px;
+    height: 30px;
+    margin: 5px 0;
+    padding: 5px 10px;
 }
 .myConcern,.concernToMe{
     padding: 7px 15px 15px 7px;
@@ -509,6 +531,12 @@ ul{
     color: #585858;
     font-size: 14px;
 }
+.userPanelPreview label>i{
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
 .hidePer{
     height: 100%;
     overflow: hidden;
@@ -533,7 +561,20 @@ ul{
     width: 100%;
     display: block;
 }
-
+.userInfo button.btn{
+    margin-top: 10px;
+    width: 47%;
+}
+.userInfo button.btn:hover{
+    background-color: #d9534f;
+    color: white;
+}
+.userInfo button.btn:last-child{
+    margin-right: 3%;
+}
+.w100{
+    width: 100%;
+}
 /*writearticle 写文章*/
 .articleCover{
     width: 100%;
@@ -562,6 +603,152 @@ ul{
     border: 0;
     padding: 6px 15px;
     font-size: 24px;
+}
+
+/*博文详情*/
+article{
+    padding: 3px;
+}
+.articleInfo{
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    overflow: auto;
+    color: #3a87ad;
+    background-color: rgba(217,237,247,0.8);
+}
+.commentTotal{
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    overflow: auto;
+    color: #3a87ad;
+    text-align: center;
+    background-color: rgba(217,237,247,0.6);
+    margin-top: 20px;
+}
+.comment{
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 10px 0;
+}
+.comment a{
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.commentImg{
+    position: absolute;
+    top:13px;
+    left: -30px;
+    width: 50px;
+    height:50px;
+    border-radius:100%;
+    border:2px solid white;
+    overflow: hidden;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+li.comment > article:hover .commentImg {
+    -webkit-transition: all .8s ease;
+    -moz-transition: all .8s ease;
+    -o-transition: all .8s ease;
+    transition: all .8s ease;
+    -webkit-transform: rotate(720deg);
+    -moz-transform: rotate(720deg);
+    transform: rotate(720deg);
+    border-radius: 0%;
+}
+.commentHead{
+    padding: 15px 10px 15px 40px;
+    background-color: rgba(217,237,247,0.6);
+    color: #666;
+    font-size: 14px;
+}
+.commentHead span{
+    font-weight: 700;
+}
+.commentInfo{
+    padding: 20px 55px 30px 45px;
+    color: #666;
+}
+.comment ol{
+    padding-left: 20px;
+    padding-bottom: 1px;
+}
+
+.articleComment ol li{
+    background-color:rgba(230,238,232,0.5);
+    transition: background-color 0.3s ease-in-out,box-shadow 0.3s ease-in-out;
+    -moz-transition: background-color 0.3s ease-in-out,box-shadow 0.3s ease-in-out;
+    -webkit-transition: background-color 0.3s ease-in-out,box-shadow 0.3s ease-in-out;
+    -o-transition: background-color 0.3s ease-in-out,box-shadow 0.3s ease-in-out;
+}
+.articleComment ol li:hover{
+    background-color: rgba(255,255,255,1);
+}
+.respont input[type='submit'] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    color: rgb(217, 83, 79);
+    padding: 10px 25px;
+    background-color: transparent;
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(217, 83, 79);
+    border-image: initial;
+    transition: all 0.3s ease;
+    outline: 0;
+}
+.respont input[type='submit']:hover {
+    color: white;
+    background-color: rgb(217, 83, 79);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(217, 83, 79);
+    border-image: initial;
+    transition: all 0.3s ease;
+}
+.respont  textarea {
+    width: 100%;
+    background-color: transparent;
+    margin: 0px 0px 10px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(193, 193, 193);
+    border-image: initial;
+    transition: background-color 0.3s ease-in-out;
+    -moz-transition: background-color 0.3s ease-in-out;
+    -webkit-transition: background-color 0.3s ease-in-out;
+    -o-transition: background-color 0.3s ease-in-out;
+}
+.respont  textarea:focus {
+    border: 2px solid #d9534f;
+    background-color: rgba(255, 255, 255, 1);
+}
+.respont h3 {
+    color: rgb(58, 135, 173);
+    background-color: rgba(217, 237, 247, 0.8);
+    text-align: center;
+    font-size: 14px;
+    padding: 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-radius: 4px;
+    overflow: auto;
+    margin: 10px auto;
 }
 /*动画代码区*/
 @keyframes imageAnimation {

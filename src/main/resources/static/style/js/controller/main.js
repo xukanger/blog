@@ -2,7 +2,7 @@
  * Created by tanghao on 2017/5/6.
  * 配置前端路由及其他全局配置
  */
-var myApp = angular.module('myApp',['ngRoute'])
+var myApp = angular.module('myApp',['ngRoute','myApp.service']);
 myApp.config(['$routeProvider',function($routeProvider){
         $routeProvider.when('/',{
                 templateUrl:'home.html',
@@ -20,18 +20,14 @@ myApp.config(['$routeProvider',function($routeProvider){
                 templateUrl:'writearticle.html',
                 controller:'writearticleController'
             })
+            .when('/articleDetails',{
+                templateUrl:'articleDetails.html',
+                controller:'articleDetailsController'
+            })
             .otherwise({redirectTo:'/'});
     }]);
-// myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route',function ($scope, $filter, $routeParams,$route) {
-//
-// }]);
-// myApp.controller('userhomeController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-//
-// }]);
-// myApp.controller('messageController', ['$scope', '$filter', '$routeParams','$route', function ($scope, $filter, $routeParams,$route) {
-//
-// }]);
-//
+
+
 $(function () {
 /*
 * 滚动翻转
@@ -94,4 +90,16 @@ function lazyArticle() {
         // (rec2.top - rec2.height)
     }
 }
+/**/
+    $('body').on('click','#userPanelPreview i.glyphicon-pencil',function () {
+        $('#userPanelPreview').addClass('hide')
+        $('#userPanel').addClass('userPanelEd')
+        $('#userPanelEdit').removeClass('hide')
+    })
+    $('body').on('click','#giveupEdit',function () {
+        $('#userPanelPreview').removeClass('hide')
+        $('#userPanel').removeClass('userPanelEd')
+        $('#userPanelEdit').addClass('hide')
+    })
+
 })

@@ -7,28 +7,13 @@
         <!--<img src="/style/img/blogImg/vn.jpg" alt="">-->
     </div>
     <div class="articleTitle">
-        <input type="text" 请输入文章标题>
+        <input type="text" placeholder="在这里输入文章标题" >
     </div>
 </div>
-<div class="col-md-4">
+<div class="col-md-8">
     <div id="editor" type="text/plain" ueditor="editor"></div>
 </div>
-
-
-
-
-<script type="text/javascript">
-    var ue = UE.getEditor('editor', {
-        initialContent: "",
-        autoHeightEnabled:false,
-        autoFloatEnabled:true,
-        initialFrameWidth:1000,
-        initialFrameHeight:500,
-        wordCount:false,
-        'paragraph':{'p':'正文', 'h1':'标题 1', 'h2':'标题 2', 'h3':'标题 3', 'h4':'标题 4'},
-    });
-
-    ue.ready(function(){
-        ue.focus();
-    })
-</script>
+<div  class="col-md-8" id= "regbtn" data-toggle="popover" style="color:white;margin: 10px 0 10px 280px" data-placement="top">
+    <a style="width: 120px;margin-right: 20px" href="javascript:;" class="btn btn-primary">发布</a>
+    <a style="width: 120px" href="javascript:;" class="btn btn-primary">保存为草稿</a>
+</div>

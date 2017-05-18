@@ -9,7 +9,7 @@
     <div class="hidePer">
         <div class="sorc">
             <div class="userPanelPreview" id="userPanelPreview">
-                <label>个人资料</label>
+                <label>个人资料<i class="glyphicon glyphicon-pencil" title="编辑"></i></label>
                 <div class="userInfo">
                     <div class="user-group ">
                         <span class="userTile">用户名</span>
@@ -30,7 +30,7 @@
                             </span>
                     </div>
                 </div>
-                <label>我关注的</label>
+                <label>我关注的<span title="关注数">(20)</span></label>
                 <div class="myConcern woqu-flex woqu-flex-startWrap">
                     <div class="concern">
                         <div class="concernImg">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <label>关注我的</label>
+                <label>关注我的<span title="关注数">(20)</span></label>
                 <div class="concernToMe woqu-flex woqu-flex-startWrap">
                     <div class="concern">
                         <div class="concernImg">
@@ -102,7 +102,35 @@
                 </div>
                 <label>硬币数：<span>200</span></label>
             </div>
-            <div class="userPanelEdit" id="userPanelEdit">
+            <div class="userPanelEdit hide" id="userPanelEdit">
+                <div class="userInfo">
+                    <div class="user-group ">
+                        <span class="userTile">用户名</span>
+                        <span class="userVal w100">
+                            <input type="text">
+                        </span>
+                    </div>
+                    <div class="user-group ">
+                        <span class="userTile">昵称</span>
+                        <span class="userVal w100">
+                            <input type="text">
+                        </span>
+                    </div>
+                    <div class="user-group ">
+                        <span class="userTile">邮箱</span>
+                        <span class="userVal w100">
+                            <input type="email">
+                        </span>
+                    </div>
+                    <div class="user-group ">
+                        <span class="userTile">头像</span>
+                        <span class="userVal w100">
+                            <input type="file">
+                        </span>
+                    </div>
+                    <button class="btn">保存</button>
+                    <button class="btn" id="giveupEdit">放弃</button>
+                </div>
             </div>
         </div>
     </div>

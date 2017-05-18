@@ -1,5 +1,22 @@
 <div class="" ng-controller="articleDetailsController">
     <div class="col-md-8">
+        <article class="boxShadow pad-15">
+            <div class="articleTitle text-center"><h2>详细日志TOP1</h2></div>
+            <div class="articleTag text-center">
+                <span class="label">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    2017-1-1
+                </span>
+                <span class="label">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                    45℃
+                </span>
+            </div>
+            <div class="articleInfo">
+                adfahsdfkjasdfkhasifuwehfiawf<br>
+                sdfadsfasdfasdfasdfasdfasdfasd
+            </div>
+        </article>
         <div class="articleComment">
             <div class="commentTotal boxShadow">
                 <i class="glyphicon glyphicon-comment"></i> 60评论
@@ -78,5 +95,11 @@
         </div>
     </div>
     <div class="col-md-4">
+        <!--搜索-->
+        <div ng-include="'/template/assembly/search.html'"></div>
+        <!--登陆-->
+        <div ng-include="'/template/assembly/login.html'"></div>
+        <!--文章-->
+        <div ng-include="'/template/assembly/newArticle.html'"></div>
     </div>
 </div>

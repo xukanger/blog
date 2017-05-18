@@ -6,45 +6,24 @@
     <script src="/style/lib/angular-1.3.15/angular.min.js"></script>
     <script src="/style/lib/angular-1.3.15/angular-route.min.js"></script>
     <script src="/style/lib/angular-1.3.15/angular-messages.min.js"></script>
+    <script src="/style/lib/angular-1.3.15/cookies/angular-cookie.min.js"></script>
     <script src="/style/lib/jquery/jquery-1.11.0.min.js"></script>
     <link rel="stylesheet" href="/style/lib/bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="/style/css/reset.css" type="text/css">
     <link rel="stylesheet" href="/style/css/common.css" type="text/css">
     <script src="/style/lib/bootstrap/js/bootstrap.js"></script>
     <script src="/style/js/controller/main.js"></script>
+    <script src="/style/js/controller/serivce.js"></script>
     <script src="/style/js/controller/homeController.js"></script>
     <script src="/style/js/controller/userhomeController.js"></script>
     <script src="/style/js/controller/messageController.js"></script>
     <script src="/style/js/controller/writearticleController.js"></script>
-    <script src="/style/js/controller/serivce.js"></script>
+    <script src="/style/js/controller/articleDetailsController.js"></script>
     <script type="text/javascript" src="/style/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="/style/ueditor/ueditor.all.js"></script>
 </head>
 <body>
-<section>
-    <ul class="bgSlideShow">
-        <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
-    </ul>
-</section>
-<div class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <div class="navbar-collapse bs-navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#/home">首页</a></li>
-                    <li><a href="#/userhome">个人主页</a></li>
-                    <li><a href="#/message">留言</a></li>
-                    <li><a href="#/writearticle">写文章</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<div ng-include="'/template/assembly/header.html'"></div>
 <div class="container mgt-50">
     <div class="row">
         <div ng-view></div>
