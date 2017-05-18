@@ -1,4 +1,4 @@
-package just.service.auth;
+package just.service.user;
 
 
 import just.VO.bloguser.ModifyUserVO;
@@ -20,4 +20,6 @@ public interface AuthService {
     boolean isUsernameDuplicate(String username);
 
     boolean isDataSensitive(String data);
+
+
 }

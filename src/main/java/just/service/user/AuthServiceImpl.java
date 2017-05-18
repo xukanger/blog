@@ -1,16 +1,12 @@
-package just.service.auth;
+package just.service.user;
 
-import com.google.common.collect.Lists;
 import just.VO.bloguser.ModifyUserVO;
 import just.common.util.BeanHelper;
 import just.common.util.JwtTokenUtil;
-import just.common.util.SensitiveWordInit;
 import just.common.util.SensitivewordEngine;
-import just.entity.SensitiveWord;
 import just.entity.User;
 import just.service.jwt.JwtUser;
 import just.service.sensitiveword.SensitiveWordRepository;
-import just.service.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,8 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -123,15 +117,11 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean isDataSensitive(String data) {
-        SensitiveWordInit sensitiveWordInit = new SensitiveWordInit();
-        // 从数据库中获取敏感词对象集合（调用的方法来自Dao层，此方法是service层的实现类）
-        Iterable<SensitiveWord> iterable = sensitiveWordRepository.findAll();
-        if(iterable == null) return true;
-        List<SensitiveWord> sensitiveWords = Lists.newArrayList();
-        // 构建敏感词库
-        Map sensitiveWordMap = sensitiveWordInit.initKeyWord(sensitiveWords);
-        SensitivewordEngine.sensitiveWordMap = sensitiveWordMap;
+        return SensitivewordEngine.
+                sensitiveWordMap != null
+                &&
+                SensitivewordEngine.
+                        isContaintSensitiveWord(data, SensitivewordEngine.minMatchTYpe);
 
-        return SensitivewordEngine.isContaintSensitiveWord(data,SensitivewordEngine.minMatchTYpe);
     }
 }

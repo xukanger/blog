@@ -7,7 +7,7 @@ import just.VO.bloguser.SimpleUserVO;
 import just.common.controller.BaseController;
 import just.common.util.WebUtils;
 import just.entity.User;
-import just.service.auth.AuthService;
+import just.service.user.AuthService;
 import just.service.jwt.JwtUser;
 import just.service.storge.StorageFileNotFoundException;
 import just.service.storge.StorageService;

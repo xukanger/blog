@@ -11,6 +11,9 @@ public class JSONResult {
 
     private Object result;
 
+    public static JSONResult getSuccessMessage(Object result){
+        return new JSONResult(null,"成功",result);
+    }
 
 
     public JSONResult(Integer status, String message, Object result) {

@@ -14,6 +14,7 @@ import java.util.Date;
  */
 public abstract class BaseController {
 
+
     /**
      * 初始化数据绑定
      * 1. 将所有传递进来的String进行HTML编码，防止XSS攻击
@@ -28,5 +29,8 @@ public abstract class BaseController {
         // Date 类型转换
         binder.registerCustomEditor(Date.class, new DateEditor());
     }
+
+
+
 
 }

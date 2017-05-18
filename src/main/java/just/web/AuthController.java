@@ -7,7 +7,7 @@ import just.VO.jwt.JwtAuthenticationRequest;
 import just.VO.jwt.JwtAuthenticationResponse;
 import just.common.controller.BaseController;
 import just.common.util.CookieUtil;
-import just.service.auth.AuthService;
+import just.service.user.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
