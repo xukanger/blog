@@ -18,6 +18,7 @@ myAppServie.factory('userService', ['$http', '$q', function($http, $q) {
                 }
             ).error(function (reason) {
                 deferred.reject(reason);
+                console.dir(reason);
             });
             return deferred.promise;
         }

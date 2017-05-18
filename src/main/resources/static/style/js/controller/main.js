@@ -2,7 +2,7 @@
  * Created by tanghao on 2017/5/6.
  * 配置前端路由及其他全局配置
  */
-var myApp = angular.module('myApp',['ngRoute','myApp.service'])
+var myApp = angular.module('myApp',['ngRoute','myApp.service']);
 myApp.config(['$routeProvider',function($routeProvider){
         $routeProvider.when('/',{
                 templateUrl:'home.html',

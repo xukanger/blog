@@ -1,5 +1,5 @@
 <!--登陆组件-->
-<div id="login" class="login hoverWbg9 boxShadowWhite">
+<div id="login" ng-show="!isLogin" class="login hoverWbg9 boxShadowWhite">
     <div class="login-header">
         请登录
     </div>
@@ -23,4 +23,9 @@
         <button  ng-click="doLogin()" class="btn" >登陆</button>
         <a href="/template/register.html"  class="btn" target="_blank">注册</a>
     </form>
+</div>
+<div  id="logined" ng-show="isLogin" class="login hoverWbg9 boxShadowWhite">
+    <div>
+        欢迎你的到来！！O(∩_∩)O~~
+    </div>
 </div>
