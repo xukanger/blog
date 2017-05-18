@@ -4,17 +4,11 @@
         最新文章
     </div>
     <ul class="newArticleList">
-        <li class="hoverWbg7 woqu-flex woqu-flex-space">
-            <span class="title">LOL出装大全</span>
-            <span class="host">2000℃</span>
-        </li>
-        <li class="hoverWbg7 woqu-flex woqu-flex-space">
-            <span class="title">LOL出装大全</span>
-            <span class="host">2000℃</span>
-        </li>
-        <li class="hoverWbg7 woqu-flex woqu-flex-space">
-            <span class="title">LOL出装大全</span>
-            <span class="host">2000℃</span>
-        </li>
+        <a href="#/articleDetails?aid={{::newArticle.id}}" ng-repeat="newArticle in newArticleListArry">
+            <li class="hoverWbg7 woqu-flex woqu-flex-space">
+                <span class="title">{{::newArticle.title}}</span>
+                <span class="host">{{::newArticle.heat}}℃</span>
+            </li>
+        </a>
     </ul>
 </div>

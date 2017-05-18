@@ -90,4 +90,16 @@ function lazyArticle() {
         // (rec2.top - rec2.height)
     }
 }
+/**/
+    $('body').on('click','#userPanelPreview i.glyphicon-pencil',function () {
+        $('#userPanelPreview').addClass('hide')
+        $('#userPanel').addClass('userPanelEd')
+        $('#userPanelEdit').removeClass('hide')
+    })
+    $('body').on('click','#giveupEdit',function () {
+        $('#userPanelPreview').removeClass('hide')
+        $('#userPanel').removeClass('userPanelEd')
+        $('#userPanelEdit').addClass('hide')
+    })
+
 })
