@@ -1,9 +1,9 @@
 <!--登陆组件-->
-<div id="login" ng-show="!isLogin" class="login hoverWbg9 boxShadowWhite">
+<div id="login" class="login hoverWbg9 boxShadowWhite">
     <div class="login-header">
         请登录
     </div>
-    <form action="">
+    <form action="" ng-show="!isLogin" >
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input type="text" class="form-control" aria-describedby="sizing-addon2" ng-model="user.username" value="{{user.username}}" >
@@ -23,9 +23,13 @@
         <button  ng-click="doLogin()" class="btn" >登陆</button>
         <a href="/template/register.html"  class="btn" target="_blank">注册</a>
     </form>
-</div>
-<div  id="logined" ng-show="isLogin" class="login hoverWbg9 boxShadowWhite">
-    <div>
-        欢迎你的到来！！O(∩_∩)O~~
+    <div id="logined"  ng-show="isLogin">
+        <div class="abs">
+            <span class="garden">
+                <img src="/style/img/userimg/userImg.jpg" alt="">
+            </span>
+            <span>aname</span>
+            <button class="btn">退出登陆</button>
+        </div>
     </div>
 </div>

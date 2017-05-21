@@ -26,7 +26,93 @@ myApp.config(['$routeProvider',function($routeProvider){
             })
             .otherwise({redirectTo:'/'});
     }]);
+myApp.controller('appCintroller', ['$scope', '$filter', '$routeParams','$route', 'userService','articleService',function ($scope, $filter, $routeParams,$route,userService,articleService) {
+    $scope.isLogin = false;
+    //TODO:抽取方法，页面间跳转使用
+    var token = getCookie("token");
+    if(token!=""){
+        userService.login(token).then(function (data) {
+                console.dir(data);
+                if(data){
+                    token = data;
+                    $scope.isLogin = true;//其他页面需要根据登录状况判断是否要转回登录页面
+                    setCookie("token",token);//FIXME
+                    console.log("login success");
 
+                }
+            },
+            function (reason) {
+                console.dir(reason);
+                if(reason.status == "403"){
+                    console.log("token invalid");
+                    return;
+                }
+            }
+        );
+    }
+
+    $scope.user={
+        "username":'',
+        "password":'',
+    };
+    $scope.articles=[
+        {
+
+        }
+    ];
+
+    $scope.doLogin=function () {
+        console.log("login begin");
+        userService.login($scope.user).then(function (data) {
+                console.dir(data);
+                if(data){
+                    setCookie("token",data);//FIXME
+                    console.log("login success");
+                    $scope.isLogin = true;
+                }
+            },
+            function (reason) {
+                console.dir(reason);
+                if(reason.status == "403"){
+                    console.log("access denied");
+                    return;
+                }
+            }
+        );
+    };
+
+    function setCookie(name,value)
+    {
+        var Days = 7;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+    }
+
+    function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+        if(arr=document.cookie.match(reg))
+
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+
+    var newArticleListArry = [
+        {id:1,title:'lol攻略',heat:10},
+        {id:2,title:'lol出装',heat:200},
+        {id:3,title:'lol天赋',heat:3200}
+    ]
+    var ArticleListArry = [
+        {id:1,title:'lol攻略',heat:10,comment:20,text:'lol攻略我也不知道是啥',cover:'/style/img/blogImg/vn.jpg',month:1,day:01},
+        {id:2,title:'lol出装',heat:200,comment:20,text:'lol出装，6草鞋',cover:'/style/img/blogImg/wuqi.jpg',month:2,day:31},
+        {id:3,title:'lol天赋',heat:3200,comment:20,text:'lol天赋是啥能吃吗',cover:'/style/img/blogImg/bg1.jpg',month:3,day:21}
+    ]
+    $scope.newArticleListArry = newArticleListArry;
+    $scope.ArticleListArry = ArticleListArry;
+}]);
 
 $(function () {
 /*
