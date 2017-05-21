@@ -5,31 +5,27 @@ myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route
 
     $scope.isLogin = false;
     //TODO:抽取方法，页面间跳转使用
-    var token = getCookie("token");
+    var token = getCookie("Authorization");
+    console.dir(token);
     if(token!=""){
-        userService.login(token).then(function (data) {
-                console.dir(data);
-                if(data){
-                    token = data;
-                    $scope.isLogin = true;//其他页面需要根据登录状况判断是否要转回登录页面
-                    setCookie("token",token);//FIXME
-                    console.log("login success");
-
-                }
-            },
-            function (reason) {
-                console.dir(reason);
-                if(reason.status == "403"){
-                    console.log("token invalid");
-                    return;
-                }
+        userService.getSelf().then(function (data) {
+            console.dir(data);
+            $scope.self = data.result;
+            $scope.isLogin = true;
+        },function (data) {
+            if(data.status == "403"){
+                console.log("access denied");
+                return;
             }
-        );
+        })
     }
 
     $scope.user={
         "username":'',
         "password":'',
+    };
+    $scope.self={
+
     };
     $scope.articles=[
         {
@@ -57,13 +53,6 @@ myApp.controller('homeController', ['$scope', '$filter', '$routeParams', '$route
         );
     };
 
-    function setCookie(name,value)
-    {
-        var Days = 7;
-        var exp = new Date();
-        exp.setTime(exp.getTime() + Days*24*60*60*1000);
-        document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
-    }
 
     function getCookie(name)
     {
